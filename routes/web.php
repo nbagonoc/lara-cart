@@ -62,8 +62,14 @@ Route::post('/checkout', [
 
 // GET | orders
 Route::get('/orders', [
-    'uses' => 'orderController@customerOrders',
+    'uses' => 'OrderController@customerOrders',
     'as' => 'order.customerOrders'
 ])->middleware('auth');
+
+// GET | Products - Manage
+Route::get('/products/manage', [
+    'uses'=>'ProductController@index',
+    'as'=>'pages.dashboard'
+])->middleware('auth','moderator');
 
 Auth::routes();

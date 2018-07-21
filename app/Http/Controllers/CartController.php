@@ -33,6 +33,44 @@ class CartController extends Controller
         return redirect('/');
     }
 
+    public function addCart(Request $request, $id){
+        $product = Product::findOrFail($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart',$cart);
+        return redirect('/cart')->with('success','Sucessfully added 1 item to cart');
+    }
+
+    public function reduceCart($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->reduce($id);
+
+        if(count($cart->items)>0){
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+        
+        return redirect('/cart')->with('success','Sucessfully removed 1 item from cart');
+    }
+
+    public function removeFromCart($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->remove($id);
+
+        if(count($cart->items)>0){
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+
+        return redirect('/cart')->with('success','Sucessfully removed product from cart');
+    }
+
     public function clear(){
         Session::forget('cart');
         return redirect('/cart')->with('success','Sucessfully removed all items from cart');

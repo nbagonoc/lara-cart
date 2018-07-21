@@ -24,6 +24,24 @@ Route::get('/add-to-cart/{id}', [
     'as'=>'cart.addToCart'
 ]);
 
+// GET | Add unit cart
+Route::get('/add-cart/{id}', [
+    'uses'=>'cartController@addCart',
+    'as'=>'cart.addCart'
+]);
+
+// GET | Reduce unit cart
+Route::get('/reduce-cart/{id}', [
+    'uses'=>'cartController@reduceCart',
+    'as'=>'cart.reduceCart'
+]);
+
+// GET | Remove product from cart
+Route::get('/remove-from-cart/{id}',[
+    'uses'=>'cartController@removeFromCart',
+    'as'=>'cart.removeFromCart'
+]);
+
 // GET | clear
 Route::get('/clear', [
     'uses' => 'cartController@clear',

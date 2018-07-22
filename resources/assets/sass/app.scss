@@ -4,3 +4,20 @@
 .sticky-top {
   top: 15px !important;
 }
+.card-image {
+  height: 200px;
+  -moz-background-size: cover !important;
+  -webkit-background-size: cover !important;
+  -ms-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+}
+.product-image {
+  height: 57px !important;
+  width: 57px;
+  -moz-background-size: cover !important;
+  -webkit-background-size: cover !important;
+  -ms-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+}

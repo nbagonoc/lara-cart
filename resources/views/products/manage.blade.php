@@ -13,6 +13,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th>Image</th>
                                     <th>Product</th>
                                     <th>Price</th>
                                     <th>Status</th>
@@ -22,7 +23,16 @@
                             <tbody>
                                 @foreach($products as $product)
                                     <tr>
-                                        <td class="align-middle text-capitalize">{{$product->name}}</td>
+                                        <td class="p-0">
+                                            <a href="/product/{{$product->id}}">
+                                                <div class="product-image" style="
+                                                    background: url('/storage/imgPath/{{$product->imgPath}}') center center;
+                                                "></div>
+                                            </a>
+                                        </td>
+                                        <td class="align-middle text-capitalize">
+                                                <a href="/product/{{$product->id}}" class="text-dark">{{$product->name}}</a>
+                                        </td>
                                         <td class="align-middle">${{number_format((float)$product->price,2,'.','')}}</td>
                                         <td class="text-capitalize align-middle">{{$product->status}}</td>
                                         <td class="align-middle">

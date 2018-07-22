@@ -2,3 +2,16 @@
   top: 15px !important;
 }
 
+.card-image {
+  height: 200px;
+  -ms-background-size: cover !important;
+  background-size: cover !important;
+}
+
+.product-image {
+  height: 57px !important;
+  width: 57px;
+  -ms-background-size: cover !important;
+  background-size: cover !important;
+}
+

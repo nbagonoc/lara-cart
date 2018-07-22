@@ -12,7 +12,9 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="card mb-3">
                                 <a href="/product/{{$product->id}}">
-                                    <img src="/storage/imgPath/{{$product->imgPath}}" alt="{{$product->name}}" class="card-img-top img-responsive border-bottom">
+                                    <div class="card-image rounded-top" style="
+                                    background: url('/storage/imgPath/{{$product->imgPath}}') center center;
+                                    "></div>
                                 </a>
                                 <div class="card-body">
                                     <a href="/product/{{$product->id}}" class="text-dark"><h6 class="text-capitalize font-weight-light mb-0">{{$product->name}}</h6></a>

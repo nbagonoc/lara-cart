@@ -1,13 +1,14 @@
-@extends("layouts.app")
-@section("content")
+@extends('layouts.app')
+
+@section('content')
     <div class="row">
         <div class="col-lg-3 col-md-4 mb-3">
             @include("partials.shopSidebar")
         </div>
         <div class="col-lg-9 col-md-8">
-            <div class="row">
-                @if(count($products)>=1)
-                    @foreach($products as $product)
+            @if(count($products)>=1)
+                <div class="row">
+                        @foreach($products as $product)
                         <div class="col-lg-4 col-md-6">
                             <div class="card mb-3">
                                 <a href="/product/{{$product->id}}">
@@ -29,7 +30,10 @@
                             </div>
                         </div>
                     @endforeach
-                @endif
-            </div>
+                </div>
+            @else
+                No product in this category
+            @endif
         </div>
+    </div>
 @endsection

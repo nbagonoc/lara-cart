@@ -6,6 +6,12 @@ Route::get('/', [
     'as' => 'pages.home'
 ]);
 
+// GET | shop by category
+Route::get('/shop/{category}', [
+    'uses' => 'PageController@shopByCategory',
+    'as' => 'pages.shop'
+]);
+
 // GET | dashboard
 Route::get('/dashboard', [
     'uses'=>'DashboardController@index',

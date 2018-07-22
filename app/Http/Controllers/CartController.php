@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
+use Redirect;
 use Stripe\Stripe;
 use Stripe\Charge;
 use Auth;
@@ -30,7 +31,7 @@ class CartController extends Controller
 
         $request->session()->put('cart',$cart);
         // dd($request->session()->get('cart'));
-        return redirect('/');
+        return Redirect::back();
     }
 
     public function addCart(Request $request, $id){

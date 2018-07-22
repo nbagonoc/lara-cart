@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class ProductController extends Controller
 {
@@ -13,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.manage');
+        $products = Product::all();
+        return view('products.manage')->with('products',$products);
     }
 
     /**
@@ -23,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -34,7 +36,42 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'status' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+            'imgPath' => 'required|image|nullable|max:1999'
+        ]);
+
+        //file upload
+        if($request->hasFile('imgPath')){
+            //get filename with extension
+            $filenameWithExt = $request->file('imgPath')->getClientOriginalName();
+            //get filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get extension
+            $extension = $request->file('imgPath')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            //upload image
+            $path  = $request->file('imgPath')->storeAs('public/imgPath', $fileNameToStore);
+        }
+        
+        //create post
+        $product = new Product;
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->status = $request->input('status');
+        $product->category = $request->input('category');
+        $product->description = $request->input('description');
+        $product->imgPath = $fileNameToStore;
+        $product->save();
+
+        //redirect after creation
+        return redirect('/products/manage')->with('success','Successfully added new product');
+
     }
 
     /**
@@ -44,8 +81,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $product = Product::findOrFail($id);
+        return view('products.show')->with('product',$product);
     }
 
     /**

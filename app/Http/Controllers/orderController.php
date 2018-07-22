@@ -7,6 +7,9 @@ use Auth;
 
 class OrderController extends Controller
 {
+    public function index(){
+        return view('orders.manage');
+    }
     public function customerOrders(){
         $orders = Auth::user()->orders;
         $orders->transform(function($order, $key) {

@@ -9,12 +9,24 @@
                     <input class="form-control" type="text" placeholder="Search">
                 </form>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/cart">
-                        <i class="fa fa-shopping-cart"></i>
-                    Cart <span class="badge badge-success">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
-                    </a>
-                </li>
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            Cart <span class="badge badge-success badge-pill">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
+                        </a>
+                    </li>
+                @endguest
+                @auth
+                    @if(Auth::user()->role == 'user')
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                Cart <span class="badge badge-success badge-pill">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
+                            </a>
+                        </li>
+                    @endif
+                @endauth
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">

@@ -35,7 +35,7 @@
                                 </div>
                             @endforeach
                         @else
-                            No orders <a href="/" class="btn btn-outline-success btn-sm">Shop Now</a>
+                            No orders <a href="/cart" class="btn btn-outline-success btn-sm">Go to Cart</a>
                         @endif
                 </div>
             </div>

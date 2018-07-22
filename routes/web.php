@@ -82,31 +82,31 @@ Route::get('/product/{id}', [
 Route::get('/products/manage/create', [
     'uses'=>'ProductController@create',
     'as'=>'products.create'
-]);
+])->middleware('moderator');
 
 // GET | Product create
 Route::post('/products/manage/store', [
     'uses'=>'ProductController@store',
     'as'=>'products.store'
-]);
+])->middleware('moderator');
 
 //GET | Product edit/update
 Route::get('/products/manage/edit/{id}',[
     'uses' => 'ProductController@edit',
     'as' => 'products.edit'
-]);
+])->middleware('moderator');
 
 // PATCH | Product edit/update process
 Route::patch('/products/manage/update/{id}', [
     'uses'=>'ProductController@update',
     'as'=>'products.update'
-]);
+])->middleware('moderator');
 
 // DELETE | Product delete
 Route::delete('/products/manage/delete/{id}', [
     'uses'=>'ProductController@destroy',
     'as'=>'products.delete'
-]);
+])->middleware('moderator');
 
 
 // GET | Orders - Manage

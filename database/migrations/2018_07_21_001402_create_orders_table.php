@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id');
             $table->text('cart');
             $table->string('payment_id');
+            $table->string('status')->default('pending');
             $table->string('email');
             $table->string('name');
             $table->string('address');

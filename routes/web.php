@@ -108,11 +108,16 @@ Route::delete('/products/manage/delete/{id}', [
     'as'=>'products.delete'
 ])->middleware('moderator');
 
-
 // GET | Orders - Manage
 Route::get('/orders/manage', [
     'uses'=>'OrderController@index',
     'as'=>'orders.manage'
+])->middleware('moderator');
+
+// GET | Orders - Show
+Route::get('/orders/manage/show/{id}', [
+    'uses'=>'OrderController@show',
+    'as'=>'orders.show'
 ])->middleware('moderator');
 
 // GET | Users - Manage

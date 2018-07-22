@@ -24,7 +24,7 @@
                                     <tr>
                                         <td class="align-middle text-capitalize">{{$product->name}}</td>
                                         <td class="align-middle">${{number_format((float)$product->price,2,'.','')}}</td>
-                                        <td class="align-middle">{{$product->status}}</td>
+                                        <td class="text-capitalize align-middle">{{$product->status}}</td>
                                         <td class="align-middle">
                                             <a href="/product/{{$product->id}}" class="btn btn-outline-success btn-sm">View</a>
                                             <a href="/products/manage/edit/{{$product->id}}" class="btn btn-outline-warning btn-sm">Edit</a>

@@ -11,7 +11,7 @@
                 <div class="card-body">
                     @if($order)
                         <p class="card-title m-0"><strong>Ref ID:</strong> {{$order->id}}</p>
-                        <p class="card-text m-0"><strong>Status:</strong> <span class="badge badge-success badge-pill">Pending</span></p>
+                        <p class="card-text m-0"><strong>Status:</strong> <span class="text-capitalize badge badge-success badge-pill">{{$order->status}}</span></p>
                         <p class="card-text m-0"><strong>Customer Name:</strong> {{$order->user->name}}</p>
                         <p class="card-text m-0"><strong>Shipping Address:</strong> {{$order->address}}</p>
                         <p class="card-text m-0"><strong>Ordered On:</strong> {{ date('F d, Y', strtotime($order->created_at))}}</p>
@@ -30,7 +30,7 @@
                             <h5 class="float-right">Total amount paid: <span class="text-success">${{number_format((float)$order->cart->totalPrice,2,'.','')}}</span></h5>
                         </div>
                         <hr>
-                        <a href="#" class="btn btn-outline-success btn-sm">Update status</a>
+                        <a href="/orders/manage/edit/{{$order->id}}" class="btn btn-outline-success btn-sm">Update status</a>
                         <a href="/orders/manage" class="btn btn-outline-secondary btn-sm">Back to Orders</a>
                     @else
                         Order not found

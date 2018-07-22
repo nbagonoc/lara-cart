@@ -24,6 +24,7 @@
                             @if(Auth::user()->role=='user')
                                 <a href="/add-to-cart/{{$product->id}}" class="btn btn-outline-success btn-sm">Add to Cart</a>
                             @else
+                                <a href="/products/manage/edit/{{$product->id}}" class="btn btn-outline-success btn-sm">Edit</a>
                                 <a href="#confirmDeleteModal" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteModal">Delete</a>
                                 {{-- Confirm Delete Modal --}}
                                 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confimModalLabel" aria-hidden="true">

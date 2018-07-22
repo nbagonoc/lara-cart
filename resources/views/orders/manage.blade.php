@@ -14,7 +14,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Ref ID</th>
                                     <th>Customer</th>
                                     <th>Status</th>
                                     <th>Date ordered</th>
@@ -25,8 +25,8 @@
                                 @foreach($orders as $order)
                                     <tr>
                                         <td>{{$order->id}}</td>
-                                        <td>{{$order->user->name}}</td>
-                                        <td>pending</td>
+                                        <td class="text-capitalize">{{$order->user->name}}</td>
+                                        <td class="text-capitalize">{{$order->status}}</td>
                                         <td>{{ date('F d, Y', strtotime($order->created_at))}}</td>
                                         <td>
                                             <a href="/orders/manage/show/{{$order->id}}" class="btn btn-outline-success btn-sm">View</a>

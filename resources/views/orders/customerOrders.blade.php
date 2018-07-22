@@ -16,7 +16,7 @@
                                         <p class="card-title m-0"><strong>Ref ID:</strong> {{$order->id}}</p>
                                         <p class="card-text m-0"><strong>Ordered on:</strong> {{ date('F d, Y', strtotime($order->created_at))}}</p>
                                         <p class="card-text m-0"><strong>Shipping Address:</strong> {{$order->address}}</p>
-                                        <p class="card-text m-0"><strong>Status:</strong> <span class="badge badge-success badge-pill">Pending</span></p>
+                                    <p class="card-text m-0"><strong>Status:</strong> <span class="text-capitalize badge badge-success badge-pill">{{$order->status}}</span></p>
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         @foreach($order->cart->items as $item)

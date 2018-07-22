@@ -17,9 +17,9 @@
         <a href="/users/manage" class="list-group-item list-group-item-action text-dark">
             <i class="fas fa-users mr-2"></i>Manage Users
         </a>
-            <a href="/users/manage/create" class="list-group-item list-group-item-action text-dark pl-5">
+            {{-- <a href="/users/manage/create" class="list-group-item list-group-item-action text-dark pl-5">
                 <i class="fas fa-plus-circle mr-2"></i>Create User
-            </a>
+            </a> --}}
     @endif
     @if(Auth::user()->role=="user")
         <a href="/cart" class="list-group-item list-group-item-action text-dark">
@@ -29,7 +29,4 @@
             <i class="fas fa-shipping-fast mr-2"></i>Orders
         </a>
     @endif
-    <a href="/account" class="list-group-item list-group-item-action text-dark">
-        <i class="fas fa-id-card mr-2"></i>Account Details
-    </a>
 </div>

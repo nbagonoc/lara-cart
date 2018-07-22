@@ -72,7 +72,6 @@ class ProductController extends Controller
 
         //redirect after creation
         return redirect('/products/manage')->with('success','Successfully added new product');
-
     }
 
     /**

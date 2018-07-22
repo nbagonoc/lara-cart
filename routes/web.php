@@ -120,22 +120,22 @@ Route::get('/orders/manage/show/{id}', [
     'as'=>'orders.show'
 ])->middleware('moderator');
 
+// GET | Orders - edit/update status
+Route::get('/orders/manage/edit/{id}', [
+    'uses'=>'OrderController@edit',
+    'as'=>'orders.edit'
+])->middleware('moderator');
+
+// GET | Orders - edit/update status process
+Route::patch('/orders/manage/update/{id}', [
+    'uses'=>'OrderController@update',
+    'as'=>'orders.update'
+])->middleware('moderator');
+
 // GET | Users - Manage
 Route::get('/users/manage', [
     'uses'=>'UserController@index',
     'as'=>'users.manage'
 ])->middleware('admin');
-
-// GET | Users -  create
-Route::get('/users/manage/create', [
-    'uses'=>'UserController@create',
-    'as'=>'users.create'
-]);
-
-// GET | User - Acount
-Route::get('/account', [
-    'uses'=>'AccountController@index',
-    'as'=>'account.index'
-])->middleware('auth');
 
 Auth::routes();

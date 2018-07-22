@@ -27,7 +27,7 @@
                                 <a href="/products/manage/delete/{{$product->id}}" class="btn btn-outline-danger btn-sm">Remove</a>
                             @endif
                         @endauth
-                        <a href="{{ URL::previous() }}" class="btn btn-outline-secondary btn-sm">Back</a>
+                        <a href="/" class="btn btn-outline-secondary btn-sm">Continue Shopping</a>
                     </div>
                 </div>
             </div>

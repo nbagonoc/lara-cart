@@ -16,7 +16,7 @@
                                     <tr>
                                         <td class="p-0">
                                             <a href="/product/{{$product['item']['id']}}">
-                                                <img src="{{$product['item']['imgPath']}}" style="height: 57px" class="m-0">
+                                                <img src="/storage/imgPath/{{$product['item']['imgPath']}}" style="height: 57px" class="m-0">
                                             </a>
                                         </td>
                                         <td>

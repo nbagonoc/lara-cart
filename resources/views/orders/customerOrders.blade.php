@@ -21,7 +21,7 @@
                                     <ul class="list-group list-group-flush">
                                         @foreach($order->cart->items as $item)
                                             <li class="list-group-item">
-                                                <span class="text-capitalize">{{$item['item']['name']}}</span> |
+                                            <a href="/product/{{$item['item']['id']}}" class="text-capitalize text-dark">{{$item['item']['name']}}</a> |
                                                 Unit(s): <span class="badge badge-pill badge-success">{{$item['qty']}}</span> |
                                                 Price: <span class="badge badge-pill badge-success">${{number_format((float)$item['item']['price'],2,'.','')}}</span>
                                                 <span class="float-right">Total unit price: <span class="badge badge-success badge-pill">${{number_format((float)$item['price'],2,'.','')}}</span></span>

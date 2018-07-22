@@ -115,10 +115,10 @@ class CartController extends Controller
             Auth::user()->orders()->save($order);
             // clear cart
             Session::forget('cart');
-            return redirect('/cart')->with('success','Payment successful');
+            return redirect('/cart')->with('success','Payment, and order successful.');
         }
         catch(\Exception $error){
-            return redirect('/cart')->with('error','Payment not successful');
+            return redirect('/cart')->with('error','Order not successful. Please try again.');
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Product;
 
 class ProductController extends Controller
@@ -94,7 +95,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('products.edit')->with('product',$product);
     }
 
     /**
@@ -106,7 +108,43 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'status' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+        ]);
+
+        //file upload
+        if($request->hasFile('imgPath')){
+            //get filename with extension
+            $filenameWithExt = $request->file('imgPath')->getClientOriginalName();
+            //get filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get extension
+            $extension = $request->file('imgPath')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            //upload image
+            $path  = $request->file('imgPath')->storeAs('public/imgPath', $fileNameToStore);
+        }
+
+        //update product
+        $product = Product::find($id);
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->status = $request->input('status');
+        $product->category = $request->input('category');
+        $product->description = $request->input('description');
+        if($request->hasFile('imgPath')){
+            Storage::delete('public/imgPath/'.$product->imgPath);
+            $product->imgPath = $fileNameToStore;
+        }
+        $product->save();
+
+        //redirect after update
+        return redirect('/products/manage')->with('success','Successfully update product');
     }
 
     /**
@@ -117,6 +155,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        //redirect after delete
+        return redirect('/products/manage')->with('success','Successfully deleted product');
     }
 }

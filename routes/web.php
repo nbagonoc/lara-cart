@@ -90,6 +90,25 @@ Route::post('/products/manage/store', [
     'as'=>'products.store'
 ]);
 
+//GET | Product edit/update
+Route::get('/products/manage/edit/{id}',[
+    'uses' => 'ProductController@edit',
+    'as' => 'products.edit'
+]);
+
+// PATCH | Product edit/update process
+Route::patch('/products/manage/update/{id}', [
+    'uses'=>'ProductController@update',
+    'as'=>'products.update'
+]);
+
+// DELETE | Product delete
+Route::delete('/products/manage/delete/{id}', [
+    'uses'=>'ProductController@destroy',
+    'as'=>'products.delete'
+]);
+
+
 // GET | Orders - Manage
 Route::get('/orders/manage', [
     'uses'=>'OrderController@index',

@@ -27,7 +27,7 @@
                                         <td class="align-middle">{{$product->status}}</td>
                                         <td class="align-middle">
                                             <a href="/product/{{$product->id}}" class="btn btn-outline-success btn-sm">View</a>
-                                            <a href="/product/manage/edit/{{$product->id}}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                            <a href="/products/manage/edit/{{$product->id}}" class="btn btn-outline-warning btn-sm">Edit</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -16,13 +16,21 @@
                         <h4 class="mb-0 text-success">${{number_format((float)$product->price,2,'.','')}}</h4>                        
                         <hr>
                         @guest
-                            <a href="/add-to-cart/{{$product->id}}" class="btn btn-outline-success btn-sm">Add to Cart</a>
-                            <a href="/" class="btn btn-outline-secondary btn-sm">Continue Shopping</a>
+                            @if($product->status=='available')
+                                <a href="/add-to-cart/{{$product->id}}" class="btn btn-outline-success btn-sm">Add to Cart</a>
+                            @else
+                                <button type="button" class="btn btn-outline-danger btn-sm" disabled>Out of Stock</button>
+                            @endif
+                            <a href="/" class="btn btn-outline-info btn-sm">Continue Shopping</a>
                         @endguest
                         @auth
                             @if(Auth::user()->role=='user')
-                                <a href="/add-to-cart/{{$product->id}}" class="btn btn-outline-success btn-sm">Add to Cart</a>
-                                <a href="/" class="btn btn-outline-secondary btn-sm">Continue Shopping</a>
+                                @if($product->status=='available')
+                                    <a href="/add-to-cart/{{$product->id}}" class="btn btn-outline-success btn-sm">Add to Cart</a>
+                                @else
+                                    <button type="button" class="btn btn-outline-danger btn-sm" disabled>Out of Stock</button>
+                                @endif
+                                <a href="/" class="btn btn-outline-info btn-sm">Continue Shopping</a>
                             @else
                                 <a href="/products/manage/edit/{{$product->id}}" class="btn btn-outline-success btn-sm">Edit</a>
                                 <a href="#confirmDeleteModal" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteModal">Delete</a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -13,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.manage');
+        $users = User::where('role', '!=', 'admin')->orderBy('created_at','asc')->paginate(10);
+        return view('users.manage')->with('users',$users);
     }
 
     /**
@@ -45,7 +47,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('users.show')->with('user',$user);
     }
 
     /**
@@ -56,7 +59,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('users.edit')->with('user',$user);
     }
 
     /**
@@ -68,7 +72,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validate
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        // update user
+        $user = User::findOrFail($id);
+        $user->name = $request->input('name');
+        $user->role = $request->input('role');
+        $user->save();
+
+        // redirect after update
+        return redirect('/users/show/'.$id)->with('success','Successfully updated user');
     }
 
     /**
@@ -79,6 +95,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // delete user
+        $user = User::findOrFail($id);
+        $user->delete();
+        
+        // redirect user after deletion
+        return redirect('/users/manage')->with('success','Successfully deleted user');
     }
 }

@@ -150,4 +150,28 @@ Route::get('/users/manage', [
     'as'=>'users.manage'
 ])->middleware('auth','admin');
 
+// GET | Users - show
+Route::get('/users/show/{id}', [
+    'uses'=>'UserController@show',
+    'as'=>'users.show'
+])->middleware('auth','admin');
+
+// GET | Users - edit
+Route::get('/users/edit/{id}', [
+    'uses'=>'UserController@edit',
+    'as'=>'users.edit'
+])->middleware('auth','admin');
+
+// PATCH | Users - edit/update process
+Route::patch('/users/update/{id}', [
+    'uses'=>'UserController@update',
+    'as'=>'users.update'
+])->middleware('auth','admin');
+
+// PATCH | Users - delete process
+Route::delete('/users/delete/{id}', [
+    'uses'=>'UserController@destroy',
+    'as'=>'users.delete'
+])->middleware('auth','admin');
+
 Auth::routes();

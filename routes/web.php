@@ -9,7 +9,13 @@ Route::get('/', [
 // GET | shop by category
 Route::get('/shop/{category}', [
     'uses' => 'PageController@shopByCategory',
-    'as' => 'pages.shop'
+    'as' => 'pages.shopByCategory'
+]);
+
+// GET | search product
+Route::get('/shop/search/',[
+    'uses' => 'PageController@shopBySearch',
+    'as' => 'pages.shopBySearch'
 ]);
 
 // GET | dashboard
@@ -22,7 +28,7 @@ Route::get('/dashboard', [
 Route::get('/cart', [
     'uses'=>'cartController@cart',
     'as'=>'cart.index'
-])->middleware('user');
+])->middleware('auth','user');
 
 // GET | Add to cart
 Route::get('/add-to-cart/{id}', [
@@ -34,49 +40,49 @@ Route::get('/add-to-cart/{id}', [
 Route::get('/add-cart/{id}', [
     'uses'=>'cartController@addCart',
     'as'=>'cart.addCart'
-])->middleware('user');
+])->middleware('auth','user');
 
 // GET | Reduce unit cart
 Route::get('/reduce-cart/{id}', [
     'uses'=>'cartController@reduceCart',
     'as'=>'cart.reduceCart'
-])->middleware('user');
+])->middleware('auth','user');
 
 // GET | Remove product from cart
 Route::get('/remove-from-cart/{id}',[
     'uses'=>'cartController@removeFromCart',
     'as'=>'cart.removeFromCart'
-])->middleware('user');
+])->middleware('auth','user');
 
 // GET | clear
 Route::get('/clear', [
     'uses' => 'cartController@clear',
     'as' => 'cart.clear'
-])->middleware('user');
+])->middleware('auth','user');
 
 // GET | checkout
 Route::get('/checkout', [
     'uses' => 'cartController@checkout',
     'as' => 'cart.checkout'
-])->middleware('user');
+])->middleware('auth','user');
 
 // POST | checkout process
 Route::post('/checkout', [
     'uses' => 'cartController@checkoutProcess',
     'as' => 'cart.checkoutProcess'
-])->middleware('user');
+])->middleware('auth','user');
 
 // GET | orders
 Route::get('/orders', [
     'uses' => 'OrderController@customerOrders',
     'as' => 'order.customerOrders'
-])->middleware('user');
+])->middleware('auth','user');
 
 // GET | Products - Manage
 Route::get('/products/manage', [
     'uses'=>'ProductController@index',
     'as'=>'products.manage'
-])->middleware('moderator');
+])->middleware('auth','moderator');
 
 // GET | Product show
 Route::get('/product/{id}', [
@@ -88,60 +94,60 @@ Route::get('/product/{id}', [
 Route::get('/products/manage/create', [
     'uses'=>'ProductController@create',
     'as'=>'products.create'
-])->middleware('moderator');
+])->middleware('auth','moderator');
 
 // GET | Product create
 Route::post('/products/manage/store', [
     'uses'=>'ProductController@store',
     'as'=>'products.store'
-])->middleware('moderator');
+])->middleware('auth','moderator');
 
 //GET | Product edit/update
 Route::get('/products/manage/edit/{id}',[
     'uses' => 'ProductController@edit',
     'as' => 'products.edit'
-])->middleware('moderator');
+])->middleware('auth','moderator');
 
 // PATCH | Product edit/update process
 Route::patch('/products/manage/update/{id}', [
     'uses'=>'ProductController@update',
     'as'=>'products.update'
-])->middleware('moderator');
+])->middleware('auth','moderator');
 
 // DELETE | Product delete
 Route::delete('/products/manage/delete/{id}', [
     'uses'=>'ProductController@destroy',
     'as'=>'products.delete'
-])->middleware('moderator');
+])->middleware('auth','moderator');
 
 // GET | Orders - Manage
 Route::get('/orders/manage', [
     'uses'=>'OrderController@index',
     'as'=>'orders.manage'
-])->middleware('moderator');
+])->middleware('auth','moderator');
 
 // GET | Orders - Show
 Route::get('/orders/manage/show/{id}', [
     'uses'=>'OrderController@show',
     'as'=>'orders.show'
-])->middleware('moderator');
+])->middleware('auth','moderator');
 
 // GET | Orders - edit/update status
 Route::get('/orders/manage/edit/{id}', [
     'uses'=>'OrderController@edit',
     'as'=>'orders.edit'
-])->middleware('moderator');
+])->middleware('auth','moderator');
 
 // GET | Orders - edit/update status process
 Route::patch('/orders/manage/update/{id}', [
     'uses'=>'OrderController@update',
     'as'=>'orders.update'
-])->middleware('moderator');
+])->middleware('auth','moderator');
 
 // GET | Users - Manage
 Route::get('/users/manage', [
     'uses'=>'UserController@index',
     'as'=>'users.manage'
-])->middleware('admin');
+])->middleware('auth','admin');
 
 Auth::routes();

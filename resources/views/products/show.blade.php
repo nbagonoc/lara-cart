@@ -19,13 +19,16 @@
                         <hr>
                         @guest
                             <a href="/add-to-cart/{{$product->id}}" class="btn btn-outline-success btn-sm">Add to Cart</a>
+                            <a href="/" class="btn btn-outline-secondary btn-sm">Continue Shopping</a>
                         @endguest
                         @auth
                             @if(Auth::user()->role=='user')
                                 <a href="/add-to-cart/{{$product->id}}" class="btn btn-outline-success btn-sm">Add to Cart</a>
+                                <a href="/" class="btn btn-outline-secondary btn-sm">Continue Shopping</a>
                             @else
                                 <a href="/products/manage/edit/{{$product->id}}" class="btn btn-outline-success btn-sm">Edit</a>
                                 <a href="#confirmDeleteModal" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteModal">Delete</a>
+                                <a href="/products/manage" class="btn btn-outline-secondary btn-sm">Manage Products</a>
                                 {{-- Confirm Delete Modal --}}
                                 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confimModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -49,7 +52,6 @@
                                 </div>
                             @endif
                         @endauth
-                        <a href="/" class="btn btn-outline-secondary btn-sm">Continue Shopping</a>
                     </div>
                 </div>
             </div>

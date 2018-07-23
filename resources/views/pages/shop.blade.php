@@ -8,7 +8,7 @@
         <div class="col-lg-9 col-md-8">
             @if(count($products)>=1)
                 <div class="row">
-                        @foreach($products as $product)
+                    @foreach($products as $product)
                         <div class="col-lg-4 col-md-6">
                             <div class="card mb-3">
                                 <a href="/product/{{$product->id}}">
@@ -32,6 +32,9 @@
                             </div>
                         </div>
                     @endforeach
+                    <div class="col-12">
+                        {{$products->links()}}
+                    </div>
                 </div>
             @else
                 No product in this category

@@ -5,9 +5,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse collapse" id="navbarsExample04" style="">
-            <form class="form-inline">
-                    <input class="form-control" type="text" placeholder="Search">
-                </form>
+            {{-- Product search --}}
+            <form action="/search" method="POST" role="search" class="form-inline">
+                {{ csrf_field() }}
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" placeholder="Search product">
+                </div>
+            </form>
             <ul class="navbar-nav ml-auto">
                 @guest
                     <li class="nav-item">

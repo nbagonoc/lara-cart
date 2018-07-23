@@ -34,6 +34,8 @@
                     <div class="col-12">
                         {{$products->links()}}
                     </div>
+                @else
+                    <div class="text-center">No products</div>
                 @endif
             </div>
         </div>

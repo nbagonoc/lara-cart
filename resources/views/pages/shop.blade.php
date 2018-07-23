@@ -37,7 +37,7 @@
                     </div>
                 </div>
             @else
-                No product in this category
+                <span class="">No products in this category</span>
             @endif
         </div>
     </div>

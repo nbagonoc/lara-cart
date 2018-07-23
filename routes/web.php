@@ -13,9 +13,9 @@ Route::get('/shop/{category}', [
 ]);
 
 // GET | search product
-Route::get('/shop/search/',[
-    'uses' => 'PageController@shopBySearch',
-    'as' => 'pages.shopBySearch'
+Route::any('/search',[
+    'uses' => 'PageController@search',
+    'as' => 'pages.search'
 ]);
 
 // GET | dashboard

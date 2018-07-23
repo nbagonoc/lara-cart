@@ -30,13 +30,18 @@
                                 {{Form::select('status', ['available' => 'Available', 'out-of-stock' => 'Out of Stock'], $product->status,['class'=>'form-control'])}}
                             </div>
                         </div>
-                        <div class="form-group">
-                            {{Form::label('imgPath', 'Featured image')}}
-                            {{Form::file('imgPath',['class'=>'form-control'])}}
-                        </div>
-                        <div class="form-group">
-                            {{Form::label('description', 'Description')}}
-                            {{Form::textarea('description', $product->description, ['id'=>'article-ckeditor','class'=>'form-control', 'placeholder'=>'product description'])}}
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                {{Form::label('description', 'Description')}}
+                                {{Form::textarea('description', $product->description, ['id'=>'article-ckeditor','class'=>'form-control', 'placeholder'=>'product description'])}}
+                            </div>
+                            <div class="form-group col-md-4">
+                                {{Form::label('imgPath', 'Featured image')}}
+                                {{Form::file('imgPath',['class'=>'form-control'])}}
+                                <div class="card-image mt-2 rounded" style="
+                                    background: url('/storage/imgPath/{{$product->imgPath}}') center center;
+                                "></div>
+                            </div>
                         </div>
                         {{Form::hidden('_method','PATCH')}}
                         {{Form::submit('Submit', ['class'=>'btn btn-outline-success btn-sm'])}}

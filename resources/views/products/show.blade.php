@@ -13,9 +13,7 @@
                     <div class="card-body">
                         <h5 class="text-capitalize mb-0">{{$product->name}}</h5>
                         <h6 class="text-capitalize text-secondary small">{{$product->category}}</h6>
-                        <h4 class="mb-0 text-success">${{number_format((float)$product->price,2,'.','')}}</h4>
-                        <hr>
-                        {{$product->description}}
+                        <h4 class="mb-0 text-success">${{number_format((float)$product->price,2,'.','')}}</h4>                        
                         <hr>
                         @guest
                             <a href="/add-to-cart/{{$product->id}}" class="btn btn-outline-success btn-sm">Add to Cart</a>
@@ -52,6 +50,8 @@
                                 </div>
                             @endif
                         @endauth
+                        <hr>
+                        {{$product->description}}
                     </div>
                 </div>
             </div>

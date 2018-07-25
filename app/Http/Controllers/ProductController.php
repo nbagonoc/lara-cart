@@ -43,7 +43,7 @@ class ProductController extends Controller
             'status' => 'required',
             'category' => 'required',
             'description' => 'required',
-            'imgPath' => 'required|image|nullable|max:1999'
+            'imgPath' => 'required|image|max:500'
         ]);
 
         //file upload
@@ -113,6 +113,7 @@ class ProductController extends Controller
             'status' => 'required',
             'category' => 'required',
             'description' => 'required',
+            'imgPath' => 'image|max:500'
         ]);
 
         //file upload
@@ -137,8 +138,12 @@ class ProductController extends Controller
         $product->category = $request->input('category');
         $product->description = $request->input('description');
         if($request->hasFile('imgPath')){
-            Storage::delete('public/imgPath/'.$product->imgPath);
-            $product->imgPath = $fileNameToStore;
+            if($product->imgPath != 'default.png'){
+                Storage::delete('public/imgPath/'.$product->imgPath);
+                $product->imgPath = $fileNameToStore;
+            } else {
+                $product->imgPath = $fileNameToStore;
+            }
         }
         $product->save();
 

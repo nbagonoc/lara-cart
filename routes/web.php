@@ -174,4 +174,21 @@ Route::delete('/users/delete/{id}', [
     'as'=>'users.delete'
 ])->middleware('auth','admin');
 
-Auth::routes();
+
+// OAUTH
+Route::get('/login', [
+    'uses' => 'Auth\LoginController@showLoginForm',
+    'as' => 'login'
+]);
+Route::get('/auth/google', [
+    'uses' => 'Auth\RegisterController@redirectToProvider',
+    'as' => 'register'
+]);
+Route::get('/auth/google/callback', [
+    'uses' => 'Auth\RegisterController@handleProviderCallback',
+    'as' => 'processLoginRegister'
+]);
+Route::post('/logout', [
+    'uses' => 'Auth\LoginController@logout',
+    'as' => 'logout'
+]);

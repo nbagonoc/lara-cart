@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Product;
+use App\Comment;
 
 class ProductController extends Controller
 {
@@ -82,8 +83,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {   
+        $comments = Product::findOrFail($id)->comments;
         $product = Product::findOrFail($id);
-        return view('products.show')->with('product',$product);
+        return view('products.show', compact('comments', 'product'));
     }
 
     /**

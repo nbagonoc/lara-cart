@@ -3,13 +3,13 @@
 @section('content')
     @if($product)
         <div class="row">
-                <div class="col-md-6 order-md-2 mb-3">
-                    <div class="card">
-                        <img src="/storage/imgPath/{{$product->imgPath}}" alt="{{$product->name}}" class="w-100">
-                    </div>
+            <div class="col-md-6 order-md-2 mb-3">
+                <div class="card sticky-top">
+                    <img src="/storage/imgPath/{{$product->imgPath}}" alt="{{$product->name}}" class="w-100">
                 </div>
+            </div>
             <div class="col-md-6">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="text-capitalize mb-0">{{$product->name}}</h5>
                         <a href="/shop/{{$product->category}}" class="text-capitalize text-secondary small">{{$product->category}}</a>
@@ -62,6 +62,38 @@
                         {{$product->description}}
                     </div>
                 </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        @auth
+                        {!! Form::open(['action' => ['CommentController@store',$product->id], 'method' => 'POST']) !!}
+                            <div class="form-group">
+                                {{Form::label('comment', 'Leave a comment')}}
+                                {{Form::textarea('body', '', ['id'=>'article-ckeditor','class'=>'form-control', 'rows'=>'4', 'placeholder'=>'Leave a comment'])}}
+                            </div>
+                            {{Form::submit('Submit', ['class'=>'btn btn-outline-success btn-sm'])}}
+                        {!! Form::close() !!}
+                        @else
+                        <p class="mb-0">Please <a href="http://lara-cart.com/login">Sign-in</a> to leave a comment</p>
+                        @endauth
+                    </div>
+                </div>
+                @if(count($comments)>=1)
+                    @foreach($comments as $comment)
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p class="mb-0">{{$comment->user->name}}</p>
+                                <span class="small text-muted">{{$comment->created_at}}</span>
+                                <p class="mb-0">{{$comment->body}}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <p class="mb-0">No comments available</p>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     @else

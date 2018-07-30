@@ -96,7 +96,7 @@ Route::get('/products/manage/create', [
     'as'=>'products.create'
 ])->middleware('auth','moderator');
 
-// GET | Product create
+// POST | Product create
 Route::post('/products/manage/store', [
     'uses'=>'ProductController@store',
     'as'=>'products.store'
@@ -174,6 +174,12 @@ Route::delete('/users/delete/{id}', [
     'as'=>'users.delete'
 ])->middleware('auth','admin');
 
+// COMMENT
+// POST | Comment add process
+Route::post('/comments/store/{id}', [
+    'uses'=>'CommentController@store',
+    'as'=>'comment.store'
+])->middleware('auth');
 
 // OAUTH
 Route::get('/login', [

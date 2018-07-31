@@ -1,14 +1,14 @@
 @extends("layouts.app")
 @section("content")
     <div class="row">
-        <div class="col-lg-3 col-md-4 mb-3">
+        <div class="col-lg-3 col-md-4 mb-3 pr-md-2">
             @include("partials.shopSidebar")
         </div>
         <div class="col-lg-9 col-md-8">
             <div class="row">
                 @if(count($products)>=1)
                     @foreach($products as $product)
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6 pl-md-2 pr-md-2">
                             <div class="card mb-3">
                                 <a href="/product/{{$product->id}}">
                                     <div class="card-image rounded-top" style="

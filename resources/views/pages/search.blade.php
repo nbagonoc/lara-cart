@@ -3,7 +3,7 @@
     <div class="row">
         @if(count($products)>=1)
             @foreach($products as $product)
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-3 col-md-4 pl-md-2 pr-md-2">
                     <div class="card mb-3">
                         <a href="/product/{{$product->id}}">
                             <div class="card-image rounded-top" style="

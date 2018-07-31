@@ -3,12 +3,12 @@
 @section('content')
     @if($product)
         <div class="row">
-            <div class="col-md-6 order-md-2 mb-3">
+            <div class="col-md-6 order-md-2 mb-3 pl-md-2">
                 <div class="card sticky-top">
                     <img src="/storage/imgPath/{{$product->imgPath}}" alt="{{$product->name}}" class="w-100">
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 pr-md-2">
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="text-capitalize mb-0">{{$product->name}}</h5>
@@ -59,7 +59,7 @@
                             @endif
                         @endauth
                         <hr>
-                        {{$product->description}}
+                        <p class="font-weight-light mb-0">{{$product->description}}</p>
                     </div>
                 </div>
                 <div class="card mb-3">
@@ -83,7 +83,7 @@
                             <div class="card-body">
                                 <p class="mb-0">{{$comment->user->name}}</p>
                                 <span class="small text-muted">{{$comment->created_at}}</span>
-                                <p class="mb-0">{{$comment->body}}</p>
+                                <p class="font-weight-light mb-0">{{$comment->body}}</p>
                             </div>
                         </div>
                     @endforeach
@@ -97,6 +97,6 @@
             </div>
         </div>
     @else
-        No product found
+        <p class="mb-0">product not found</p>
     @endif
 @endsection

@@ -38,7 +38,8 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'http://lara-cart.com/auth/google/callback',
+        // 'redirect' => 'http://lara-cart.com/auth/google/callback',
+        'redirect' => '/auth/google/callback',
     ],    
 
 ];
